@@ -1,0 +1,227 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Benvenuto nella Polizia Municipale</h2>
+
+<div class="row row-cols-2">
+    <div class="col my-2">
+        <div class="accordion"">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#verbaliByT" aria-expanded="false" aria-controls="verbaliByT">
+                        Mostra Tot. Verbali per Trasgressore
+                    </button>
+                </h2>
+                <div id="verbaliByT" class="accordion-collapse collapse">
+                    <div class="accordion-body text-bg-info">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Cognome
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    Tot. Verbali
+                                </th>
+                            </tr>
+
+                            @foreach (PoliziaMunicipale.Models.VerbaliByT v in ViewBag.VerbaliByT)
+                            {
+                                <tr>
+                                    <td>
+                                        #@v.IdT
+                                    </td>
+                                    <td>
+                                        @v.Surname
+                                    </td>
+                                    <td>
+                                        @v.Name
+                                    </td>
+                                    <td>
+                                        @v.TotVerbali
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col my-2">
+        <div class="accordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#puntiByT" aria-expanded="false" aria-controls="puntiByT">
+                        Mostra Punti Decurtati per Trasgressore
+                    </button>
+                </h2>
+                <div id="puntiByT" class="accordion-collapse collapse">
+                    <div class="accordion-body text-bg-info">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Cognome
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    Punti Persi
+                                </th>
+                            </tr>
+
+                            @foreach (PoliziaMunicipale.Models.PuntiByT p in ViewBag.PuntiByT)
+                            {
+                                <tr>
+                                    <td>
+                                        #@p.IdT
+                                    </td>
+                                    <td>
+                                        @p.Surname
+                                    </td>
+                                    <td>
+                                        @p.Name
+                                    </td>
+                                    <td>
+                                        @p.TotPuntiPersi
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col my-2">
+        <div class="accordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mag10Punti" aria-expanded="false" aria-controls="mag10Punti">
+                        Mostra Trasgressori con 10+ punti tolti per Violazioni
+                    </button>
+                </h2>
+                <div id="mag10Punti" class="accordion-collapse collapse">
+                    <div class="accordion-body text-bg-info">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Cognome
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    Data Violazione
+                                </th>
+                                <th>
+                                    Importo
+                                </th>
+                                <th>
+                                    Punti Persi
+                                </th>
+                            </tr>
+
+                            @foreach (PoliziaMunicipale.Models.AnMag10Punti p in ViewBag.Mag10Punti)
+                            {
+                                <tr>
+                                    <td>
+                                        @p.Surname
+                                    </td>
+                                    <td>
+                                        @p.Name
+                                    </td>
+                                    <td>
+                                        @p.DataViolazione.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        $@p.Amount
+                                    </td>
+                                    <td>
+                                        @p.PuntiPersi
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col mt-2">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#amountMag400" aria-expanded="false" aria-controls="amountMag400">
+                        Mostra Violazioni con Importo 400+
+                    </button>
+                </h2>
+                <div id="amountMag400" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body text-bg-info">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Cognome
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    Data Violazione
+                                </th>
+                                <th>
+                                    Importo
+                                </th>
+                                <th>
+                                    Punti Persi
+                                </th>
+                            </tr>
+
+                            @foreach (PoliziaMunicipale.Models.ImportoMag400 v in ViewBag.AmountMag400)
+                            {
+                                <tr>
+                                    <td>
+                                        @v.Surname
+                                    </td>
+                                    <td>
+                                        @v.Name
+                                    </td>
+                                    <td>
+                                        @v.DataViolazione.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        $@v.Amount
+                                    </td>
+                                    <td>
+                                        @v.Points
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

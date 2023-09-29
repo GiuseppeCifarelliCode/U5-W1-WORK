@@ -1,0 +1,153 @@
+﻿@model PoliziaMunicipale.Models.Verbale
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 class="text-center">Aggiungi Verbale</h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 d-flex justify-content-center align-items-center">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataViolazione, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DataViolazione, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                            @Html.ValidationMessageFor(model => model.DataViolazione, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IndirizzoViolazione, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.IndirizzoViolazione, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IndirizzoViolazione, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Agente, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Agente, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Agente, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataVerbale, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DataVerbale, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                            @Html.ValidationMessageFor(model => model.DataVerbale, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Importo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Importo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Importo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PuntiTolti, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PuntiTolti, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PuntiTolti, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IdTrasgressore, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.IdTrasgressore, new SelectList(ViewBag.ListaTrasgressori, "Value", "Text"), "Select Trasgressore", new { htmlAttributes = new { @class = "form-control dropdown-menu" } })
+                            @Html.ValidationMessageFor(model => model.IdTrasgressore, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IdViolazione, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.IdViolazione, new SelectList(ViewBag.ListaViolazioni, "Value", "Text"), "Select Violazione", new { htmlAttributes = new { @class = "form-control dropdown-menu" } })
+                            @Html.ValidationMessageFor(model => model.IdViolazione, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group my-2">
+                        <div class="col-md-offset-2 col-md-10 d-flex justify-content-center">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<h4 class="text-center">Lista Verbali</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataViolazione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Agente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataVerbale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PuntiTolti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTrasgressore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdViolazione)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (PoliziaMunicipale.Models.Verbale item in ViewBag.ListaVerbali)
+    {
+        <tr>
+            <td>
+                @item.DataViolazione.ToShortDateString()
+            </td>
+            <td>
+                @item.Agente
+            </td>
+            <td>
+                @item.DataVerbale.ToShortDateString()
+            </td>
+            <td>
+                @item.Importo
+            </td>
+            <td>
+                @item.PuntiTolti
+            </td>
+            <td>
+                @PoliziaMunicipale.Models.DB.getTrasgressoreById(item.IdTrasgressore).Surname @PoliziaMunicipale.Models.DB.getTrasgressoreById(item.IdTrasgressore).Name
+            </td>
+            <td>
+                @PoliziaMunicipale.Models.DB.getViolazioneById(item.IdViolazione).Description
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
